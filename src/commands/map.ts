@@ -27,6 +27,7 @@ export async function handleMapCommand(options: MapOptions): Promise<void> {
   if (options.includeSubdomains != null) body.include_subdomains = options.includeSubdomains;
   if (options.ignoreSitemap != null) body.ignore_sitemap = options.ignoreSitemap;
   if (options.useIndex != null) body.use_index = options.useIndex;
+  if (options.maxAge != null) body.max_age = options.maxAge;
 
   const res = await fetch(`${apiUrl}/v1/map`, {
     method: 'POST',
@@ -39,7 +40,16 @@ export async function handleMapCommand(options: MapOptions): Promise<void> {
 
   const data = await res.json();
   if (!data.success) {
-    throw new Error(data.error || data.message || 'Map request failed');
+    const msg = data.message || data.error || 'Map request failed';
+    const details = data.details;
+    if (res.status === 402 && details?.available_credits != null) {
+      throw new Error(`${msg} (available_credits: ${details.available_credits})`);
+    }
+    if (details?.issues?.length) {
+      const issues = details.issues.map((i: { field?: string; message?: string }) => `${i.field}: ${i.message}`).join('; ');
+      throw new Error(`${msg} - ${issues}`);
+    }
+    throw new Error(msg);
   }
 
   const links = data.data || [];

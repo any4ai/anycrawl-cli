@@ -252,7 +252,8 @@ function createMapCommand(): Command {
     .option('--limit <n>', 'Max URLs (1-50000)', parseInt)
     .option('--include-subdomains', 'Include subdomains', false)
     .option('--ignore-sitemap', 'Skip sitemap parsing', false)
-    .option('--use-index', 'Use page cache index', true)
+    .option('--no-use-index', 'Disable page cache index')
+    .option('--max-age <ms>', 'Cache max age (ms), 0 to skip cache', parseInt)
     .option('-o, --output <path>', 'Output file path')
     .option('--json', 'Output as JSON', false)
     .option('--pretty', 'Pretty print JSON', false)
@@ -268,6 +269,7 @@ function createMapCommand(): Command {
         includeSubdomains: options.includeSubdomains,
         ignoreSitemap: options.ignoreSitemap,
         useIndex: options.useIndex,
+        maxAge: options.maxAge,
         output: options.output,
         json: options.json,
         pretty: options.pretty,
