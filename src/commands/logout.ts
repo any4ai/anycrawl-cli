@@ -18,7 +18,10 @@ export async function handleLogoutCommand(): Promise<void> {
     updateConfig({ apiKey: '', apiUrl: '' });
     console.log('✓ Logged out successfully');
   } catch (error) {
-    console.error('Error:', error instanceof Error ? error.message : 'Unknown error');
+    console.error(
+      'Error:',
+      error instanceof Error ? error.message : 'Unknown error'
+    );
     process.exit(1);
   }
 }

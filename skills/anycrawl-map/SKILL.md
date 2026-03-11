@@ -32,14 +32,14 @@ anycrawl map "https://example.com" --include-subdomains -o .anycrawl/urls.txt
 
 ## Options
 
-| Option                    | Description                  |
-| ------------------------- | ---------------------------- |
-| `--limit <n>`             | Max URLs to return (1-50000) |
-| `--include-subdomains`    | Include subdomain URLs       |
-| `--ignore-sitemap`        | Skip sitemap parsing         |
-| `--use-index`             | Use page cache index (default: true) |
-| `-o, --output <path>`     | Output file path             |
-| `--json`                  | Output as JSON               |
+| Option                 | Description                          |
+| ---------------------- | ------------------------------------ |
+| `--limit <n>`          | Max URLs to return (1-50000)         |
+| `--include-subdomains` | Include subdomain URLs               |
+| `--ignore-sitemap`     | Skip sitemap parsing                 |
+| `--use-index`          | Use page cache index (default: true) |
+| `-o, --output <path>`  | Output file path                     |
+| `--json`               | Output as JSON                       |
 
 ## Tips
 

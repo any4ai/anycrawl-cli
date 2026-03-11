@@ -41,7 +41,7 @@ anycrawl crawl cancel <job-id>
 | Option                    | Description                                 |
 | ------------------------- | ------------------------------------------- |
 | `--wait`                  | Wait for crawl to complete before returning |
-| `--progress`              | Show progress while waiting                |
+| `--progress`              | Show progress while waiting                 |
 | `--limit <n>`             | Max pages to crawl                          |
 | `--max-depth <n>`         | Max link depth to follow                    |
 | `--include-paths <paths>` | Only crawl URLs matching these paths        |

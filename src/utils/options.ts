@@ -24,7 +24,8 @@ export function parseFormats(formatString: string): ScrapeFormat[] {
   const validFormats: ScrapeFormat[] = [];
 
   for (const input of inputFormats) {
-    const normalized = input === 'screenshot@fullpage' ? 'screenshot@fullPage' : input;
+    const normalized =
+      input === 'screenshot@fullpage' ? 'screenshot@fullPage' : input;
     if (VALID_FORMATS.includes(normalized as ScrapeFormat)) {
       validFormats.push(normalized as ScrapeFormat);
     } else {

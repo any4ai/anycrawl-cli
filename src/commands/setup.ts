@@ -47,7 +47,9 @@ async function installMcp(_options: SetupOptions): Promise<void> {
 
   const mcpUrl = `https://mcp.anycrawl.dev/${apiKey}/mcp`;
   console.log('AnyCrawl MCP URL:', mcpUrl);
-  console.log('\nAdd this to your MCP configuration (e.g., Cursor MCP settings):');
+  console.log(
+    '\nAdd this to your MCP configuration (e.g., Cursor MCP settings):'
+  );
   console.log(JSON.stringify({ url: mcpUrl }, null, 2));
   console.log('\nOr use add-mcp if available:');
   console.log(`npx add-mcp "${mcpUrl}" --name anycrawl`);

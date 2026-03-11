@@ -14,7 +14,10 @@ const DEFAULT_ENGINE = 'playwright';
  * Handle crawl command
  */
 export async function handleCrawlCommand(options: CrawlOptions): Promise<void> {
-  const client = await getClient({ apiKey: options.apiKey, apiUrl: options.apiUrl });
+  const client = await getClient({
+    apiKey: options.apiKey,
+    apiUrl: options.apiUrl,
+  });
   const { urlOrJobId, status, wait, progress, output, pretty } = options;
 
   // Status check (one-shot): --status flag or job ID without --wait
@@ -40,7 +43,9 @@ export async function handleCrawlCommand(options: CrawlOptions): Promise<void> {
     const pollInterval = (options.pollInterval ?? 3) * 1000; // ms
     const timeoutMs = options.timeout ? options.timeout * 1000 : undefined;
     const startedAt = Date.now();
-    const spinner = progress ? createSpinner(`Waiting for crawl ${jobId}...`) : null;
+    const spinner = progress
+      ? createSpinner(`Waiting for crawl ${jobId}...`)
+      : null;
     if (spinner) spinner.start();
 
     let lastStatus: { status: string; completed: number; total: number } = {
@@ -58,7 +63,9 @@ export async function handleCrawlCommand(options: CrawlOptions): Promise<void> {
           total: statusData.total,
         };
         if (spinner) {
-          spinner.update(`${statusData.completed}/${statusData.total} completed, status: ${statusData.status}`);
+          spinner.update(
+            `${statusData.completed}/${statusData.total} completed, status: ${statusData.status}`
+          );
         }
         if (statusData.status === 'completed') break;
         if (statusData.status === 'failed') {
@@ -68,14 +75,20 @@ export async function handleCrawlCommand(options: CrawlOptions): Promise<void> {
           break;
         }
         if (timeoutMs !== undefined && Date.now() - startedAt > timeoutMs) {
-          throw new Error(`Crawl timed out after ${options.timeout}s (job_id=${jobId})`);
+          throw new Error(
+            `Crawl timed out after ${options.timeout}s (job_id=${jobId})`
+          );
         }
         await new Promise((r) => setTimeout(r, pollInterval));
       }
 
-      if (spinner) spinner.succeed(`Crawl ${lastStatus.status}: ${lastStatus.completed}/${lastStatus.total} pages`);
+      if (spinner)
+        spinner.succeed(
+          `Crawl ${lastStatus.status}: ${lastStatus.completed}/${lastStatus.total} pages`
+        );
     } catch (err) {
-      if (spinner) spinner.fail(err instanceof Error ? err.message : String(err));
+      if (spinner)
+        spinner.fail(err instanceof Error ? err.message : String(err));
       throw err;
     }
 
@@ -132,11 +145,7 @@ export async function handleCrawlCommand(options: CrawlOptions): Promise<void> {
     const spinner = progress ? createSpinner(`Crawling ${url}...`) : null;
     if (spinner) spinner.start();
 
-    const result = await client.crawl(
-      crawlInput,
-      pollInterval,
-      timeoutMs
-    );
+    const result = await client.crawl(crawlInput, pollInterval, timeoutMs);
 
     if (spinner) {
       spinner.succeed(
@@ -167,5 +176,9 @@ export async function handleCrawlCommand(options: CrawlOptions): Promise<void> {
   };
   writeOutput(out, { output, json: true, pretty });
   console.error(`\nJob ID: ${created.job_id}`);
-  console.error('Use "anycrawl crawl', created.job_id, '--wait" to wait for completion.\n');
+  console.error(
+    'Use "anycrawl crawl',
+    created.job_id,
+    '--wait" to wait for completion.\n'
+  );
 }

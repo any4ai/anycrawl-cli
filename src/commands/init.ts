@@ -20,7 +20,9 @@ export interface InitOptions {
   apiKey?: string;
 }
 
-export async function handleInitCommand(options: InitOptions = {}): Promise<void> {
+export async function handleInitCommand(
+  options: InitOptions = {}
+): Promise<void> {
   const cyan = '\x1b[36m';
   const reset = '\x1b[0m';
   const dim = '\x1b[2m';
@@ -65,10 +67,15 @@ export async function handleInitCommand(options: InitOptions = {}): Promise<void
       });
       console.log(`${green}✓${reset} Skill installed\n`);
     } catch (e) {
-      console.error('\nFailed to install skills:', e instanceof Error ? e.message : e);
+      console.error(
+        '\nFailed to install skills:',
+        e instanceof Error ? e.message : e
+      );
       console.log('Retry with: anycrawl setup skills\n');
     }
   }
 
-  console.log(`${green}${bold}Setup complete!${reset} Run ${dim}anycrawl --help${reset} to get started.\n`);
+  console.log(
+    `${green}${bold}Setup complete!${reset} Run ${dim}anycrawl --help${reset} to get started.\n`
+  );
 }

@@ -41,15 +41,15 @@ anycrawl scrape "https://example.com" --format markdown,links -o .anycrawl/page.
 
 ## Options
 
-| Option                   | Description                                                      |
-| ------------------------ | ---------------------------------------------------------------- |
+| Option                   | Description                                                          |
+| ------------------------ | -------------------------------------------------------------------- |
 | `-f, --format <formats>` | markdown, html, text, rawHtml, screenshot, screenshot@fullPage, json |
-| `--engine`               | playwright (default), cheerio, puppeteer                         |
-| `--only-main-content`    | Strip nav, footer, sidebar — main content only                   |
-| `--wait-for <ms>`        | Wait for JS rendering before scraping                            |
-| `--include-tags <tags>`  | Only include these HTML tags                                     |
-| `--exclude-tags <tags>`  | Exclude these HTML tags                                          |
-| `-o, --output <path>`    | Output file path                                                 |
+| `--engine`               | playwright (default), cheerio, puppeteer                             |
+| `--only-main-content`    | Strip nav, footer, sidebar — main content only                       |
+| `--wait-for <ms>`        | Wait for JS rendering before scraping                                |
+| `--include-tags <tags>`  | Only include these HTML tags                                         |
+| `--exclude-tags <tags>`  | Exclude these HTML tags                                              |
+| `-o, --output <path>`    | Output file path                                                     |
 
 ## Tips
 

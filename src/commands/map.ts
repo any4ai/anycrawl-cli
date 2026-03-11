@@ -14,18 +14,26 @@ const DEFAULT_API_URL = 'https://api.anycrawl.dev';
  */
 export async function handleMapCommand(options: MapOptions): Promise<void> {
   const apiKey = options.apiKey ?? getApiKey();
-  const apiUrl = (options.apiUrl ?? getConfig().apiUrl ?? DEFAULT_API_URL).replace(/\/$/, '');
+  const apiUrl = (
+    options.apiUrl ??
+    getConfig().apiUrl ??
+    DEFAULT_API_URL
+  ).replace(/\/$/, '');
 
   if (!apiKey) {
-    throw new Error('API key required. Run anycrawl login or set ANYCRAWL_API_KEY.');
+    throw new Error(
+      'API key required. Run anycrawl login or set ANYCRAWL_API_KEY.'
+    );
   }
 
   const body: Record<string, unknown> = {
     url: options.url,
   };
   if (options.limit != null) body.limit = options.limit;
-  if (options.includeSubdomains != null) body.include_subdomains = options.includeSubdomains;
-  if (options.ignoreSitemap != null) body.ignore_sitemap = options.ignoreSitemap;
+  if (options.includeSubdomains != null)
+    body.include_subdomains = options.includeSubdomains;
+  if (options.ignoreSitemap != null)
+    body.ignore_sitemap = options.ignoreSitemap;
   if (options.useIndex != null) body.use_index = options.useIndex;
   if (options.maxAge != null) body.max_age = options.maxAge;
 
@@ -43,10 +51,17 @@ export async function handleMapCommand(options: MapOptions): Promise<void> {
     const msg = data.message || data.error || 'Map request failed';
     const details = data.details;
     if (res.status === 402 && details?.available_credits != null) {
-      throw new Error(`${msg} (available_credits: ${details.available_credits})`);
+      throw new Error(
+        `${msg} (available_credits: ${details.available_credits})`
+      );
     }
     if (details?.issues?.length) {
-      const issues = details.issues.map((i: { field?: string; message?: string }) => `${i.field}: ${i.message}`).join('; ');
+      const issues = details.issues
+        .map(
+          (i: { field?: string; message?: string }) =>
+            `${i.field}: ${i.message}`
+        )
+        .join('; ');
       throw new Error(`${msg} - ${issues}`);
     }
     throw new Error(msg);

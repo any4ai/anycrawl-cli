@@ -35,7 +35,9 @@ describe('URL Utilities', () => {
   describe('getOrigin', () => {
     it('should extract origin from URL', () => {
       expect(getOrigin('https://example.com/path')).toBe('https://example.com');
-      expect(getOrigin('http://sub.example.com:8080/api')).toBe('http://sub.example.com:8080');
+      expect(getOrigin('http://sub.example.com:8080/api')).toBe(
+        'http://sub.example.com:8080'
+      );
     });
   });
 });

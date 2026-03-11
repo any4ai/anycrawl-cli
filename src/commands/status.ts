@@ -64,7 +64,8 @@ export async function getStatus(): Promise<StatusResult> {
     const health = await client.healthCheck();
     result.apiHealthy = health?.status === 'ok';
   } catch (error: unknown) {
-    result.error = error instanceof Error ? error.message : 'Failed to fetch status';
+    result.error =
+      error instanceof Error ? error.message : 'Failed to fetch status';
   }
 
   return result;
@@ -163,7 +164,9 @@ export async function handleStatusCommand(): Promise<void> {
     );
     if (status.apiHealthy !== undefined) {
       const apiLabel = status.apiHealthy ? 'ok' : 'unreachable';
-      console.log(`  ${status.apiHealthy ? green : red}●${reset} API ${dim}${apiLabel}${reset}`);
+      console.log(
+        `  ${status.apiHealthy ? green : red}●${reset} API ${dim}${apiLabel}${reset}`
+      );
     }
     if (status.error) {
       console.log(`  ${dim}Could not reach API: ${status.error}${reset}`);

@@ -9,8 +9,13 @@ import { writeOutput } from '../utils/output';
 /**
  * Handle search command
  */
-export async function handleSearchCommand(options: SearchOptions): Promise<void> {
-  const client = await getClient({ apiKey: options.apiKey, apiUrl: options.apiUrl });
+export async function handleSearchCommand(
+  options: SearchOptions
+): Promise<void> {
+  const client = await getClient({
+    apiKey: options.apiKey,
+    apiUrl: options.apiUrl,
+  });
 
   const searchInput: Parameters<typeof client.search>[0] = {
     query: options.query,

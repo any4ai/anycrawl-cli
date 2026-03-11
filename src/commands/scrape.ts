@@ -32,14 +32,20 @@ function urlToFilename(url: string, ext: string = '.md'): string {
  * Execute a single scrape and return the result (for multi-URL use)
  */
 async function executeScrape(options: ScrapeOptions): Promise<unknown> {
-  const client = await getClient({ apiKey: options.apiKey, apiUrl: options.apiUrl });
-  const formats: ScrapeFormat[] = options.formats && options.formats.length > 0
-    ? (options.formats as ScrapeFormat[])
-    : ['markdown'];
+  const client = await getClient({
+    apiKey: options.apiKey,
+    apiUrl: options.apiUrl,
+  });
+  const formats: ScrapeFormat[] =
+    options.formats && options.formats.length > 0
+      ? (options.formats as ScrapeFormat[])
+      : ['markdown'];
   const jsonOptions =
     options.jsonSchema || options.jsonPrompt
       ? {
-          schema: options.jsonSchema ? JSON.parse(options.jsonSchema) : undefined,
+          schema: options.jsonSchema
+            ? JSON.parse(options.jsonSchema)
+            : undefined,
           user_prompt: options.jsonPrompt,
         }
       : undefined;
@@ -80,7 +86,10 @@ export async function handleMultiScrapeCommand(
 
   const forceJson = shouldOutputJson(options.output, options.json);
   const ext = forceJson ? '.json' : '.md';
-  const formats = options.formats && options.formats.length > 0 ? options.formats : ['markdown'];
+  const formats =
+    options.formats && options.formats.length > 0
+      ? options.formats
+      : ['markdown'];
   const rawFormats = ['markdown', 'html', 'rawHtml', 'text'];
   const singleFormat = formats[0] as string;
   const outputRaw = formats.length === 1 && rawFormats.includes(singleFormat);
@@ -93,7 +102,10 @@ export async function handleMultiScrapeCommand(
   const promises = urls.map(async (url) => {
     const scrapeOpts: ScrapeOptions = { ...options, url };
     try {
-      const result = await executeScrape(scrapeOpts) as Record<string, unknown>;
+      const result = (await executeScrape(scrapeOpts)) as Record<
+        string,
+        unknown
+      >;
       const currentCount = ++completedCount;
 
       const filename = urlToFilename(url, ext);
@@ -101,12 +113,24 @@ export async function handleMultiScrapeCommand(
 
       let content: string;
       if (forceJson) {
-        content = options.pretty ? JSON.stringify(result, null, 2) : JSON.stringify(result);
-      } else if (outputRaw && result[singleFormat] !== undefined && result[singleFormat] !== null) {
+        content = options.pretty
+          ? JSON.stringify(result, null, 2)
+          : JSON.stringify(result);
+      } else if (
+        outputRaw &&
+        result[singleFormat] !== undefined &&
+        result[singleFormat] !== null
+      ) {
         const val = result[singleFormat];
-        content = Array.isArray(val) ? val.join('\n') : typeof val === 'string' ? val : JSON.stringify(result);
+        content = Array.isArray(val)
+          ? val.join('\n')
+          : typeof val === 'string'
+            ? val
+            : JSON.stringify(result);
       } else {
-        content = options.pretty ? JSON.stringify(result, null, 2) : JSON.stringify(result);
+        content = options.pretty
+          ? JSON.stringify(result, null, 2)
+          : JSON.stringify(result);
       }
 
       fs.writeFileSync(filepath, content, 'utf-8');
@@ -122,9 +146,7 @@ export async function handleMultiScrapeCommand(
 
   await Promise.all(promises);
 
-  process.stderr.write(
-    `\nCompleted: ${total - errorCount}/${total} succeeded`
-  );
+  process.stderr.write(`\nCompleted: ${total - errorCount}/${total} succeeded`);
   if (errorCount > 0) {
     process.stderr.write(`, ${errorCount} failed`);
   }
@@ -138,12 +160,18 @@ export async function handleMultiScrapeCommand(
 /**
  * Execute the scrape command (single URL)
  */
-export async function handleScrapeCommand(options: ScrapeOptions): Promise<void> {
-  const formats: ScrapeFormat[] = options.formats && options.formats.length > 0
-    ? (options.formats as ScrapeFormat[])
-    : ['markdown'];
+export async function handleScrapeCommand(
+  options: ScrapeOptions
+): Promise<void> {
+  const formats: ScrapeFormat[] =
+    options.formats && options.formats.length > 0
+      ? (options.formats as ScrapeFormat[])
+      : ['markdown'];
 
-  const result = (await executeScrape(options)) as Record<string, unknown> & { status?: string; error?: string };
+  const result = (await executeScrape(options)) as Record<string, unknown> & {
+    status?: string;
+    error?: string;
+  };
   const forceJson = shouldOutputJson(options.output, options.json);
 
   if (forceJson) {

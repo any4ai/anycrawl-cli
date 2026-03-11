@@ -28,7 +28,10 @@ export async function getClient(options?: {
   apiUrl?: string;
 }): Promise<AnyCrawlClient> {
   // Use Function to preserve native import() - TS would compile import() to require() otherwise
-  const dynamicImport = new Function('specifier', 'return import(specifier)') as (s: string) => Promise<typeof import('@anycrawl/js-sdk')>;
+  const dynamicImport = new Function(
+    'specifier',
+    'return import(specifier)'
+  ) as (s: string) => Promise<typeof import('@anycrawl/js-sdk')>;
   const { AnyCrawlClient } = await dynamicImport('@anycrawl/js-sdk');
 
   if (options) {
@@ -45,7 +48,8 @@ export async function getClient(options?: {
 
     const config = getConfig();
     const apiKey = normalizeApiKey(options.apiKey) ?? config.apiKey ?? '';
-    const apiUrl = normalizeApiKey(options.apiUrl) ?? config.apiUrl ?? DEFAULT_API_URL;
+    const apiUrl =
+      normalizeApiKey(options.apiUrl) ?? config.apiUrl ?? DEFAULT_API_URL;
 
     const normalizedKey = apiKey === null ? '' : apiKey;
     validateConfig(normalizedKey || undefined);

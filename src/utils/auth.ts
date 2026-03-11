@@ -4,10 +4,7 @@
  */
 
 import * as readline from 'readline';
-import {
-  loadCredentials,
-  saveCredentials,
-} from './credentials';
+import { loadCredentials, saveCredentials } from './credentials';
 import { updateConfig, getApiKey } from './config';
 
 const DEFAULT_API_URL = 'https://api.anycrawl.dev';
@@ -93,7 +90,9 @@ async function interactiveLogin(
     return manualLogin(effectiveApiUrl);
   }
 
-  console.log('Welcome! To get started, authenticate with your AnyCrawl account.\n');
+  console.log(
+    'Welcome! To get started, authenticate with your AnyCrawl account.\n'
+  );
   console.log('Tip: Get your API key from https://anycrawl.dev/dashboard');
   console.log('     Or set ANYCRAWL_API_KEY environment variable\n');
 

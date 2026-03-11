@@ -17,7 +17,9 @@ export interface LoginOptions {
 /**
  * Main login command handler
  */
-export async function handleLoginCommand(options: LoginOptions = {}): Promise<void> {
+export async function handleLoginCommand(
+  options: LoginOptions = {}
+): Promise<void> {
   const apiUrl = (options.apiUrl || DEFAULT_API_URL).replace(/\/$/, '');
 
   if (isAuthenticated() && !options.apiKey) {
@@ -34,7 +36,10 @@ export async function handleLoginCommand(options: LoginOptions = {}): Promise<vo
       updateConfig({ apiKey: options.apiKey, apiUrl });
       console.log('✓ Login successful!');
     } catch (error) {
-      console.error('Error:', error instanceof Error ? error.message : 'Unknown error');
+      console.error(
+        'Error:',
+        error instanceof Error ? error.message : 'Unknown error'
+      );
       process.exit(1);
     }
     return;

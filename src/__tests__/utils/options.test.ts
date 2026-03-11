@@ -12,7 +12,9 @@ describe('parseFormats', () => {
   });
 
   it('should normalize screenshot@fullpage to screenshot@fullPage', () => {
-    expect(parseFormats('screenshot@fullpage')).toEqual(['screenshot@fullPage']);
+    expect(parseFormats('screenshot@fullpage')).toEqual([
+      'screenshot@fullPage',
+    ]);
   });
 
   it('should throw for invalid format', () => {

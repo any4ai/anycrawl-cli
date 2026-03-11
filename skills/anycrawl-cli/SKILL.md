@@ -26,10 +26,10 @@ If not ready, see [rules/install.md](rules/install.md). For output handling guid
 3. **Map** - Need to locate URLs within a site. Use `map` to discover URLs, then scrape.
 4. **Crawl** - Need bulk content from an entire site section (e.g., all /docs/).
 
-| Need                        | Command  | Skill               |
-| --------------------------- | -------- | ------------------- |
-| Find pages on a topic       | `search` | [anycrawl-search](../anycrawl-search/SKILL.md)  |
-| Get a page's content        | `scrape` | [anycrawl-scrape](../anycrawl-scrape/SKILL.md)  |
+| Need                        | Command  | Skill                                          |
+| --------------------------- | -------- | ---------------------------------------------- |
+| Find pages on a topic       | `search` | [anycrawl-search](../anycrawl-search/SKILL.md) |
+| Get a page's content        | `scrape` | [anycrawl-scrape](../anycrawl-scrape/SKILL.md) |
 | Find URLs within a site     | `map`    | [anycrawl-map](../anycrawl-map/SKILL.md)       |
 | Bulk extract a site section | `crawl`  | [anycrawl-crawl](../anycrawl-crawl/SKILL.md)   |
 

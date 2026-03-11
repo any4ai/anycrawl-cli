@@ -45,7 +45,10 @@ export function writeOutput(
 /**
  * Determine if output should be JSON based on flag or file extension
  */
-export function shouldOutputJson(outputPath?: string, jsonFlag?: boolean): boolean {
+export function shouldOutputJson(
+  outputPath?: string,
+  jsonFlag?: boolean
+): boolean {
   if (jsonFlag) return true;
   if (outputPath && outputPath.toLowerCase().endsWith('.json')) {
     return true;

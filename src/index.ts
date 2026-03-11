@@ -10,7 +10,10 @@ import { initializeConfig, updateConfig } from './utils/config';
 import { ensureAuthenticated, printBanner } from './utils/auth';
 import { isUrl, normalizeUrl } from './utils/url';
 import { parseFormats } from './utils/options';
-import { handleScrapeCommand, handleMultiScrapeCommand } from './commands/scrape';
+import {
+  handleScrapeCommand,
+  handleMultiScrapeCommand,
+} from './commands/scrape';
 import { handleCrawlCommand } from './commands/crawl';
 import { handleSearchCommand } from './commands/search';
 import { handleMapCommand } from './commands/map';
@@ -39,7 +42,10 @@ program
   .name('anycrawl')
   .description('CLI tool for AnyCrawl web scraping')
   .version(packageJson.version)
-  .option('-k, --api-key <key>', 'AnyCrawl API key (or set ANYCRAWL_API_KEY env var)')
+  .option(
+    '-k, --api-key <key>',
+    'AnyCrawl API key (or set ANYCRAWL_API_KEY env var)'
+  )
   .option('--api-url <url>', 'API URL (or set ANYCRAWL_API_URL env var)')
   .option('--status', 'Show version, auth status, and API health')
   .allowUnknownOption()
@@ -67,13 +73,20 @@ function createScrapeCommand(): Command {
   return new Command('scrape')
     .description('Scrape a URL and extract content')
     .argument('[urls...]', 'URL(s) to scrape')
-    .option('-u, --url <url>', 'URL to scrape (alternative to positional argument)')
+    .option(
+      '-u, --url <url>',
+      'URL to scrape (alternative to positional argument)'
+    )
     .option('-H, --html', 'Output raw HTML (shortcut for --format html)')
     .option(
       '-f, --format <formats>',
       'Output format(s), comma-separated: markdown, html, text, screenshot, screenshot@fullPage, rawHtml, json'
     )
-    .option('--engine <engine>', 'Engine: playwright (default), cheerio, puppeteer', 'playwright')
+    .option(
+      '--engine <engine>',
+      'Engine: playwright (default), cheerio, puppeteer',
+      'playwright'
+    )
     .option('--wait-for <ms>', 'Wait time before scraping (ms)', parseInt)
     .option('--proxy <url>', 'Proxy URL')
     .option('--timeout <ms>', 'Request timeout (ms)', parseInt)
@@ -130,10 +143,14 @@ function createScrapeCommand(): Command {
       };
 
       if (options.includeTags) {
-        scrapeOpts.includeTags = options.includeTags.split(',').map((t: string) => t.trim());
+        scrapeOpts.includeTags = options.includeTags
+          .split(',')
+          .map((t: string) => t.trim());
       }
       if (options.excludeTags) {
-        scrapeOpts.excludeTags = options.excludeTags.split(',').map((t: string) => t.trim());
+        scrapeOpts.excludeTags = options.excludeTags
+          .split(',')
+          .map((t: string) => t.trim());
       }
 
       if (urls.length === 1) {
@@ -155,11 +172,22 @@ function createCrawlCommand(): Command {
     .option('--progress', 'Show progress while waiting', false)
     .option('--limit <n>', 'Max pages to crawl', parseInt)
     .option('--max-depth <n>', 'Max crawl depth', parseInt)
-    .option('--strategy <s>', 'all|same-domain|same-hostname|same-origin', 'same-domain')
+    .option(
+      '--strategy <s>',
+      'all|same-domain|same-hostname|same-origin',
+      'same-domain'
+    )
     .option('--include-paths <paths>', 'Comma-separated paths to include')
     .option('--exclude-paths <paths>', 'Comma-separated paths to exclude')
-    .option('--scrape-paths <paths>', 'Paths to scrape content (cost optimization)')
-    .option('--poll-interval <s>', 'Poll interval when waiting (seconds)', parseFloat)
+    .option(
+      '--scrape-paths <paths>',
+      'Paths to scrape content (cost optimization)'
+    )
+    .option(
+      '--poll-interval <s>',
+      'Poll interval when waiting (seconds)',
+      parseFloat
+    )
     .option('--timeout <s>', 'Timeout when waiting (seconds)', parseFloat)
     .option('-o, --output <path>', 'Output file path')
     .option('--pretty', 'Pretty print JSON', false)
@@ -186,23 +214,32 @@ function createCrawlCommand(): Command {
         timeout: options.timeout,
       };
       if (options.includePaths) {
-        opts.includePaths = options.includePaths.split(',').map((p: string) => p.trim());
+        opts.includePaths = options.includePaths
+          .split(',')
+          .map((p: string) => p.trim());
       }
       if (options.excludePaths) {
-        opts.excludePaths = options.excludePaths.split(',').map((p: string) => p.trim());
+        opts.excludePaths = options.excludePaths
+          .split(',')
+          .map((p: string) => p.trim());
       }
       if (options.scrapePaths) {
-        opts.scrapePaths = options.scrapePaths.split(',').map((p: string) => p.trim());
+        opts.scrapePaths = options.scrapePaths
+          .split(',')
+          .map((p: string) => p.trim());
       }
       await handleCrawlCommand(opts);
     });
 
-  crawlCmd.command('cancel <job-id>').description('Cancel a running crawl job').action(async (jobId: string) => {
-    const { getClient } = await import('./utils/client');
-    const client = await getClient();
-    const result = await client.cancelCrawl(jobId);
-    console.log(JSON.stringify(result, null, 2));
-  });
+  crawlCmd
+    .command('cancel <job-id>')
+    .description('Cancel a running crawl job')
+    .action(async (jobId: string) => {
+      const { getClient } = await import('./utils/client');
+      const client = await getClient();
+      const result = await client.cancelCrawl(jobId);
+      console.log(JSON.stringify(result, null, 2));
+    });
 
   return crawlCmd;
 }
@@ -219,8 +256,15 @@ function createSearchCommand(): Command {
     .option('--time-range <range>', 'day|week|month|year')
     .option('--safe-search <n>', '0|1|2', parseInt)
     .option('--scrape', 'Scrape result URLs', false)
-    .option('--scrape-formats <formats>', 'Comma-separated formats when --scrape')
-    .option('--scrape-engine <engine>', 'playwright|cheerio|puppeteer', 'playwright')
+    .option(
+      '--scrape-formats <formats>',
+      'Comma-separated formats when --scrape'
+    )
+    .option(
+      '--scrape-engine <engine>',
+      'playwright|cheerio|puppeteer',
+      'playwright'
+    )
     .option('-o, --output <path>', 'Output file path')
     .option('--json', 'Output as JSON', false)
     .option('--pretty', 'Pretty print JSON', false)
@@ -234,7 +278,9 @@ function createSearchCommand(): Command {
         country: options.country,
         safeSearch: options.safeSearch,
         scrape: options.scrape,
-        scrapeFormats: options.scrapeFormats?.split(',').map((s: string) => s.trim()),
+        scrapeFormats: options.scrapeFormats
+          ?.split(',')
+          .map((s: string) => s.trim()),
         scrapeEngine: options.scrapeEngine,
         output: options.output,
         json: options.json,
@@ -328,7 +374,9 @@ program
 
 program
   .command('status')
-  .description('Show version, auth status, API health, and local .anycrawl status')
+  .description(
+    'Show version, auth status, API health, and local .anycrawl status'
+  )
   .action(async () => {
     await handleStatusCommand();
   });
@@ -403,17 +451,20 @@ async function main() {
     return;
   }
 
-  if (
-    args.length === 1 &&
-    (args[0] === '-y' || args[0] === '--yes')
-  ) {
+  if (args.length === 1 && (args[0] === '-y' || args[0] === '--yes')) {
     await handleInitCommand({ yes: true, all: true });
     return;
   }
 
   if (!args[0].startsWith('-') && isUrl(args[0])) {
     const url = normalizeUrl(args[0]);
-    const modifiedArgv = [process.argv[0], process.argv[1], 'scrape', url, ...args.slice(1)];
+    const modifiedArgv = [
+      process.argv[0],
+      process.argv[1],
+      'scrape',
+      url,
+      ...args.slice(1),
+    ];
     await program.parseAsync(modifiedArgv);
   } else {
     await program.parseAsync();
@@ -421,6 +472,9 @@ async function main() {
 }
 
 main().catch((error) => {
-  console.error('Error:', error instanceof Error ? error.message : 'Unknown error');
+  console.error(
+    'Error:',
+    error instanceof Error ? error.message : 'Unknown error'
+  );
   process.exit(1);
 });

@@ -46,17 +46,17 @@ anycrawl crawl https://example.com --wait -o results.json
 
 ## Commands
 
-| Command | Description |
-|---------|-------------|
-| `scrape [urls...]` | Scrape URL(s) and extract content (default: markdown) |
-| `crawl [url-or-job-id]` | Crawl a website or check crawl status |
-| `search <query>` | Search the web with optional result scraping |
-| `map [url]` | Discover URLs on a website |
-| `login` | Authenticate with API key |
-| `logout` | Clear stored credentials |
-| `config` | View or update configuration |
-| `setup skills` | Install AnyCrawl skill for AI coding agents |
-| `setup mcp` | Get MCP configuration for AnyCrawl |
+| Command                 | Description                                           |
+| ----------------------- | ----------------------------------------------------- |
+| `scrape [urls...]`      | Scrape URL(s) and extract content (default: markdown) |
+| `crawl [url-or-job-id]` | Crawl a website or check crawl status                 |
+| `search <query>`        | Search the web with optional result scraping          |
+| `map [url]`             | Discover URLs on a website                            |
+| `login`                 | Authenticate with API key                             |
+| `logout`                | Clear stored credentials                              |
+| `config`                | View or update configuration                          |
+| `setup skills`          | Install AnyCrawl skill for AI coding agents           |
+| `setup mcp`             | Get MCP configuration for AnyCrawl                    |
 
 ## Options
 
