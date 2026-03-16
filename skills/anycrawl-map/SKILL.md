@@ -14,8 +14,8 @@ Discover URLs on a site. Essential when the user knows which site but not which 
 ## When to use
 
 - You need to find a specific subpage on a large site
-- You want a list of all URLs on a site before scraping or crawling
-- Step 3 in the [workflow escalation pattern](../anycrawl-cli/SKILL.md): search → scrape → **map** → crawl
+- You want a list of URLs before choosing which to scrape
+- For full site extraction, use `crawl` directly instead
 
 ## Quick start
 

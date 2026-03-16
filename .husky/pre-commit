@@ -1,1 +1,8 @@
-npx lint-staged
+# Load Node.js when Git runs with minimal PATH (e.g. from IDE, or with nvm/fnm/volta)
+if ! command -v node >/dev/null 2>&1; then
+  [ -f "$HOME/.nvm/nvm.sh" ] && . "$HOME/.nvm/nvm.sh"
+  command -v node >/dev/null 2>&1 || eval "$(fnm env)" 2>/dev/null
+  command -v node >/dev/null 2>&1 || export PATH="$HOME/.volta/bin:$PATH"
+fi
+
+lint-staged

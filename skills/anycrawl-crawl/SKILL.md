@@ -14,8 +14,7 @@ Bulk extract content from a website. Crawls pages following links up to a depth/
 ## When to use
 
 - You need content from many pages on a site (e.g., all `/docs/`)
-- You want to extract an entire site section
-- Step 4 in the [workflow escalation pattern](../anycrawl-cli/SKILL.md): search → scrape → map → **crawl**
+- You want to extract an entire site or section — use `crawl` directly
 
 ## Quick start
 

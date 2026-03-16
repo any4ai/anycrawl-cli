@@ -15,7 +15,7 @@ Web search with optional content scraping. Returns search results as JSON, optio
 
 - You don't have a specific URL yet
 - You need to find pages, answer questions, or discover sources
-- First step in the [workflow escalation pattern](../anycrawl-cli/SKILL.md): search → scrape → map → crawl
+- Use `--scrape` to get full page content directly with search results
 
 ## Quick start
 

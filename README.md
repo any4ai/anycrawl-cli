@@ -44,6 +44,34 @@ anycrawl map https://example.com
 anycrawl crawl https://example.com --wait -o results.json
 ```
 
+## Skills
+
+Install the AnyCrawl skill for Cursor, Codex, and other AI coding agents. Lets your Agent directly use scrape, search, map, and crawl.
+
+**Steps:**
+
+1. **Install CLI and authenticate**
+
+   ```bash
+   npm install -g anycrawl-cli
+   anycrawl login --api-key <your-api-key>
+   ```
+
+2. **Install the skill**
+
+   ```bash
+   anycrawl setup skills
+   ```
+
+   By default this installs to all detected agents (Cursor, Codex, etc.). For a specific agent:
+
+   ```bash
+   anycrawl setup skills --agent cursor
+   ```
+
+3. **Restart your Agent**  
+   Restart your AI coding assistant after installation to load the new skill.
+
 ## Commands
 
 | Command                 | Description                                           |
@@ -102,15 +130,15 @@ anycrawl map https://example.com --limit 500 --json
 
 Options: `--limit`, `--include-subdomains`, `--ignore-sitemap`
 
-## Skills & MCP
+## MCP
 
-Install the AnyCrawl skill for Cursor, Codex, and other AI coding agents:
+Use AnyCrawl via MCP integration:
 
 ```bash
-anycrawl setup skills
+anycrawl setup mcp
 ```
 
-For MCP integration, run `anycrawl setup mcp` to get your MCP URL.
+Outputs your MCP URL—add it to your Cursor or other tool’s MCP configuration.
 
 ## Documentation
 

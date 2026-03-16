@@ -15,7 +15,6 @@ Scrape one or more URLs. Returns clean, LLM-optimized markdown. Multiple URLs ar
 
 - You have a specific URL and want its content
 - The page is static or JS-rendered (SPA)
-- Step 2 in the [workflow escalation pattern](../anycrawl-cli/SKILL.md): search → **scrape** → map → crawl
 
 ## Quick start
 
