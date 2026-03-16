@@ -1,12 +1,11 @@
 {
   "name": "anycrawl-cli",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Command-line interface for AnyCrawl. Scrape, crawl, search, and map websites from your terminal.",
   "main": "dist/index.js",
   "bin": {
     "anycrawl": "dist/index.js"
   },
-  "main": "dist/index.js",
   "scripts": {
     "build": "tsc",
     "dev": "tsc --watch",
