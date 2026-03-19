@@ -9,7 +9,7 @@ import type { ScrapeOptions } from '../types/scrape';
 import { getClient } from '../utils/client';
 import { writeOutput, shouldOutputJson } from '../utils/output';
 
-const DEFAULT_ENGINE = 'playwright';
+const DEFAULT_ENGINE = 'auto';
 
 /**
  * Generate a filename from a URL for saving to .anycrawl/

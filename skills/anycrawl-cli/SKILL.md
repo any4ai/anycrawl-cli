@@ -9,7 +9,7 @@ allowed-tools:
 
 # AnyCrawl CLI
 
-Web scraping, search, and crawling CLI. Returns clean markdown optimized for LLM context windows. Default engine: playwright.
+Web scraping, search, and crawling CLI. Returns clean markdown optimized for LLM context windows. Default engine: auto (automatically selects the best engine).
 
 Run `anycrawl --help` or `anycrawl <command> --help` for full option details.
 

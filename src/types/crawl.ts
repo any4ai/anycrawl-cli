@@ -13,7 +13,7 @@ export interface CrawlOptions {
   apiUrl?: string;
   pollInterval?: number;
   timeout?: number;
-  engine?: 'playwright' | 'cheerio' | 'puppeteer';
+  engine?: 'auto' | 'playwright' | 'cheerio' | 'puppeteer';
   limit?: number;
   maxDepth?: number;
   strategy?: 'all' | 'same-domain' | 'same-hostname' | 'same-origin';

@@ -8,7 +8,7 @@ import { isJobId } from '../utils/job';
 import { writeOutput } from '../utils/output';
 import { createSpinner } from '../utils/spinner';
 
-const DEFAULT_ENGINE = 'playwright';
+const DEFAULT_ENGINE = 'auto';
 
 /**
  * Handle crawl command

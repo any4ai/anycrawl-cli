@@ -14,7 +14,7 @@ export type ScrapeFormat =
 
 export interface ScrapeOptions {
   url: string;
-  engine?: 'playwright' | 'cheerio' | 'puppeteer';
+  engine?: 'auto' | 'playwright' | 'cheerio' | 'puppeteer';
   formats?: ScrapeFormat[];
   output?: string;
   json?: boolean;

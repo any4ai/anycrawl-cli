@@ -25,17 +25,17 @@ export async function handleSearchCommand(
     pages: options.pages,
     lang: options.lang,
     country: options.country,
-    safeSearch: options.safeSearch,
+    safe_search: options.safeSearch,
   };
 
   if (options.scrape && options.scrapeFormats) {
     searchInput.scrape_options = {
-      engine: options.scrapeEngine ?? 'playwright',
+      engine: options.scrapeEngine ?? 'auto',
       formats: options.scrapeFormats as ('markdown' | 'html' | 'text')[],
     };
   } else if (options.scrape) {
     searchInput.scrape_options = {
-      engine: options.scrapeEngine ?? 'playwright',
+      engine: options.scrapeEngine ?? 'auto',
       formats: ['markdown'],
     };
   }

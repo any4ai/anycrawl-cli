@@ -84,8 +84,8 @@ function createScrapeCommand(): Command {
     )
     .option(
       '--engine <engine>',
-      'Engine: playwright (default), cheerio, puppeteer',
-      'playwright'
+      'Engine: auto (default), playwright, cheerio, puppeteer',
+      'auto'
     )
     .option('--wait-for <ms>', 'Wait time before scraping (ms)', parseInt)
     .option('--proxy <url>', 'Proxy URL')
@@ -206,7 +206,7 @@ function createCrawlCommand(): Command {
         progress: options.progress,
         output: options.output,
         pretty: options.pretty,
-        engine: options.engine ?? 'playwright',
+        engine: options.engine ?? 'auto',
         limit: options.limit,
         maxDepth: options.maxDepth,
         strategy: options.strategy,
@@ -262,8 +262,8 @@ function createSearchCommand(): Command {
     )
     .option(
       '--scrape-engine <engine>',
-      'playwright|cheerio|puppeteer',
-      'playwright'
+      'auto|playwright|cheerio|puppeteer',
+      'auto'
     )
     .option('-o, --output <path>', 'Output file path')
     .option('--json', 'Output as JSON', false)

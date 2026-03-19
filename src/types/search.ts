@@ -13,7 +13,7 @@ export interface SearchOptions {
   safeSearch?: number;
   scrape?: boolean;
   scrapeFormats?: string[];
-  scrapeEngine?: 'playwright' | 'cheerio' | 'puppeteer';
+  scrapeEngine?: 'auto' | 'playwright' | 'cheerio' | 'puppeteer';
   output?: string;
   json?: boolean;
   pretty?: boolean;

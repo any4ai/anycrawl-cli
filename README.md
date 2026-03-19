@@ -88,7 +88,7 @@ Install the AnyCrawl skill for Cursor, Codex, and other AI coding agents. Lets y
 
 ## Options
 
-- **Default engine**: `playwright` (best for dynamic content)
+- **Default engine**: `auto` (automatically selects the best engine for each page)
 - **Output**: Use `-o` or `--output` to save to file. Recommended: `.anycrawl/` directory
 - **Global**: `-k, --api-key`, `--api-url` work with any command
 

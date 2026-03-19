@@ -37,19 +37,19 @@ anycrawl crawl cancel <job-id>
 
 ## Options
 
-| Option                    | Description                                 |
-| ------------------------- | ------------------------------------------- |
-| `--wait`                  | Wait for crawl to complete before returning |
-| `--progress`              | Show progress while waiting                 |
-| `--limit <n>`             | Max pages to crawl                          |
-| `--max-depth <n>`         | Max link depth to follow                    |
-| `--include-paths <paths>` | Only crawl URLs matching these paths        |
-| `--exclude-paths <paths>` | Skip URLs matching these paths              |
-| `--scrape-paths`          | Only scrape content for matching paths      |
-| `--strategy`              | Crawl strategy                              |
-| `--engine`                | playwright (default), cheerio, puppeteer    |
-| `-o, --output <path>`     | Output file path                            |
-| `--pretty`                | Pretty print JSON output                    |
+| Option                    | Description                                                 |
+| ------------------------- | ----------------------------------------------------------- |
+| `--wait`                  | Wait for crawl to complete before returning                 |
+| `--progress`              | Show progress while waiting                                 |
+| `--limit <n>`             | Max pages to crawl                                          |
+| `--max-depth <n>`         | Max link depth to follow                                    |
+| `--include-paths <paths>` | Only crawl URLs matching these paths                        |
+| `--exclude-paths <paths>` | Skip URLs matching these paths                              |
+| `--scrape-paths`          | Only scrape content for matching paths                      |
+| `--strategy`              | Crawl strategy                                              |
+| `--engine`                | auto (default, recommended), playwright, cheerio, puppeteer |
+| `-o, --output <path>`     | Output file path                                            |
+| `--pretty`                | Pretty print JSON output                                    |
 
 ## Tips
 

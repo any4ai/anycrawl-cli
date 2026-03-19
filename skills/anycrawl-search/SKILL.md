@@ -29,20 +29,20 @@ anycrawl search "your query" --scrape -o .anycrawl/scraped.json --json
 
 ## Options
 
-| Option                 | Description                                   |
-| ---------------------- | --------------------------------------------- |
-| `--limit <n>`          | Max number of results (default: 10)           |
-| `--offset <n>`         | Skip results                                  |
-| `--pages <n>`          | Number of result pages (1-20)                 |
-| `--lang <code>`        | Language code                                 |
-| `--country <code>`     | Country code for search                       |
-| `--time-range <range>` | day, week, month, year                        |
-| `--safe-search <n>`    | 0, 1, or 2                                    |
-| `--scrape`             | Also scrape full page content for each result |
-| `--scrape-formats`     | Formats when scraping (default: markdown)     |
-| `--scrape-engine`      | playwright (default), cheerio, puppeteer      |
-| `-o, --output <path>`  | Output file path                              |
-| `--json`               | Output as JSON                                |
+| Option                 | Description                                                 |
+| ---------------------- | ----------------------------------------------------------- |
+| `--limit <n>`          | Max number of results (default: 10)                         |
+| `--offset <n>`         | Skip results                                                |
+| `--pages <n>`          | Number of result pages (1-20)                               |
+| `--lang <code>`        | Language code                                               |
+| `--country <code>`     | Country code for search                                     |
+| `--time-range <range>` | day, week, month, year                                      |
+| `--safe-search <n>`    | 0, 1, or 2                                                  |
+| `--scrape`             | Also scrape full page content for each result               |
+| `--scrape-formats`     | Formats when scraping (default: markdown)                   |
+| `--scrape-engine`      | auto (default, recommended), playwright, cheerio, puppeteer |
+| `-o, --output <path>`  | Output file path                                            |
+| `--json`               | Output as JSON                                              |
 
 ## Tips
 

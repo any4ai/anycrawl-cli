@@ -43,7 +43,7 @@ anycrawl scrape "https://example.com" --format markdown,links -o .anycrawl/page.
 | Option                   | Description                                                          |
 | ------------------------ | -------------------------------------------------------------------- |
 | `-f, --format <formats>` | markdown, html, text, rawHtml, screenshot, screenshot@fullPage, json |
-| `--engine`               | playwright (default), cheerio, puppeteer                             |
+| `--engine`               | auto (default, recommended), playwright, cheerio, puppeteer          |
 | `--only-main-content`    | Strip nav, footer, sidebar — main content only                       |
 | `--wait-for <ms>`        | Wait for JS rendering before scraping                                |
 | `--include-tags <tags>`  | Only include these HTML tags                                         |
