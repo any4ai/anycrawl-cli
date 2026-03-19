@@ -1,0 +1,37 @@
+name: Publish CLI
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - package.json
+  workflow_dispatch: {}
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          registry-url: https://registry.npmjs.org/
+          cache: npm
+
+      - run: npm install --frozen-lockfile
+      - run: npm run build
+      - run: npm test
+
+      - name: Verify package is publishable
+        run: node -e "const p=require('./package.json'); if(p.private){console.error('Package is private=true. Cannot publish.'); process.exit(1)}"
+
+      - name: Publish to npm (OIDC Trusted Publisher)
+        run: |
+          npm install -g npm@latest
+          npm publish --access public --provenance
